@@ -25,8 +25,10 @@ jobs:
       - name: Instalar dependências
         run: composer i --no-ansi --no-interaction --no-suggest --prefer-dist --optimize-autoloader
 
-      - name: Gerar chave Laravel
-        run: php artisan key:generate
+      - name: Preparar App Laravel
+        run: |
+          cp .env.ci .env
+          php artisan key:generate
 
       - name: Rodar testes
         run: ./vendor/bin/pest
